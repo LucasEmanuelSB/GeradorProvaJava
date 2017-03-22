@@ -11,7 +11,16 @@
 public class Discursiva extends Questao{
     
      private String criterioDeCorrecao;
-
+     
+     public String retornaQuestao(int i, int qnt){
+         String questao = "";
+        
+        questao += "Questao "+(i+1+qnt)+"o: "+this.getPergunta();
+        questao += "\nResposta: _______________________________\n_________________________________________\n_________________________________________\n";
+        questao += "Criterio de avaliacao: "+this.getCriterioDeCorrecao()+"\n\n";
+        
+        return questao;
+    }
 
     public String getCriterioDeCorrecao() {
         return criterioDeCorrecao;

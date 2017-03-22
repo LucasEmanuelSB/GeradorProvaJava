@@ -16,9 +16,6 @@ public class Principal {
        
        Prova m1 = new Prova();
        
-       Discursiva questaoD = new Discursiva();
-       Objetiva questaoO = new Objetiva();
-       
        Scanner input = new Scanner(System.in);
        int qntDisc, qntObj;
        
@@ -34,32 +31,38 @@ public class Principal {
        System.out.print("Quantidade de perguntas discursivas: ");
        qntDisc = Integer.parseInt(input.nextLine());
        
+       m1.listaDiscursiva = new Discursiva[qntDisc];
+       
        for(int i = 0; i < qntDisc; i++){
+           m1.listaDiscursiva[i] = new Discursiva();
            System.out.print(i+1+"o questão: ");
-           questaoD.setPergunta(input.nextLine());
+           m1.listaDiscursiva[i].setPergunta(input.nextLine());
            System.out.print("PESO: ");
-           questaoD.setPeso(Double.parseDouble(input.nextLine()));
+           m1.listaDiscursiva[i].setPeso(Double.parseDouble(input.nextLine()));
            System.out.print("Criterio de avaliacao: ");
-           questaoD.setCriterioDeCorrecao(input.nextLine());
-           m1.setListaDiscursiva(questaoD, i);
+           m1.listaDiscursiva[i].setCriterioDeCorrecao(input.nextLine());
+           m1.setListaDiscursiva(m1.listaDiscursiva[i], i);
        }
        
        System.out.print("Quantidade de perguntas objetivas: ");
        qntObj = Integer.parseInt(input.nextLine());
        
+       m1.listaObjetiva = new Objetiva[qntObj];
+       
        for(int i = 0; i < qntObj; i++){
+           m1.listaObjetiva[i] = new Objetiva();
            System.out.print(i+1+"o questão: ");
-           questaoO.setPergunta(input.nextLine());
+           m1.listaObjetiva[i].setPergunta(input.nextLine());
            System.out.print("PESO: ");
-           questaoO.setPeso(Double.parseDouble(input.nextLine()));
+           m1.listaObjetiva[i].setPeso(Double.parseDouble(input.nextLine()));
            System.out.print("Informe as 5 opcoes da questao:\n");
            for(int j = 0; j < 5; j++){
                System.out.print(j+1+"o OPCAO: ");
-              questaoO.setOpcoes(j,input.nextLine());
+              m1.listaObjetiva[i].setOpcoes(j,input.nextLine());
            }
            System.out.print("\nIndice da resposta correta: ");
-           questaoO.setRespostaCorreta(Integer.parseInt(input.nextLine()));
-           m1.setListaObjetiva(questaoO, i);
+           m1.listaObjetiva[i].setRespostaCorreta(Integer.parseInt(input.nextLine()));
+           m1.setListaObjetiva(m1.listaObjetiva[i], i);
        }
        
        System.out.println(m1.obtemImpressao(qntDisc, qntObj));

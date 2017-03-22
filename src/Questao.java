@@ -8,11 +8,12 @@
  *
  * @author lucas
  */
-public class Questao {
+public abstract class Questao {
     private String pergunta;
     private double peso;
 
-
+    abstract String retornaQuestao(int i,int qnt);
+        
     public String getPergunta() {
         return pergunta;
     }

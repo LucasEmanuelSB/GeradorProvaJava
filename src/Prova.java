@@ -15,8 +15,8 @@ public class Prova {
     private String local;
     private String data;
     
-    private Discursiva[] listaDiscursiva = new Discursiva[10];
-    private Objetiva[] listaObjetiva = new Objetiva[10];
+    public Discursiva listaDiscursiva[];
+    public Objetiva listaObjetiva[];
        
     public String getNomeDisciplina(){
         return this.nomeDisciplina;
@@ -70,30 +70,6 @@ public class Prova {
         return cabecalho;
     }
     
-    public String getDiscursiva(int i,int qntObj){
-        String questao = "";
-        
-        questao += "Questao "+(i+1+qntObj)+"o: "+listaDiscursiva[i].getPergunta();
-        questao += "\nResposta: _______________________________\n_________________________________________\n_________________________________________\n";
-        questao += "Criterio de avaliacao: "+listaDiscursiva[i].getCriterioDeCorrecao()+"\n\n";
-        
-        return questao;
-    }
-    
-    public String getObjetiva(int i){
-        String questao = "";
-        
-        questao += "\nQuestao: "+(i+1)+"o: "+listaObjetiva[i].getPergunta()+"";
-        questao += "\nA) "+listaObjetiva[i].opcoes[0];
-        questao += "\nB) "+listaObjetiva[i].opcoes[1];
-        questao += "\nC) "+listaObjetiva[i].opcoes[2];
-        questao += "\nD) "+listaObjetiva[i].opcoes[3];
-        questao += "\nE) "+listaObjetiva[i].opcoes[4];
-        questao += "\n\n";
-        
-        return questao;
-    }
-    
     public String obtemImpressao(int qntDisc, int qntObj){
         
         String impressao = "";
@@ -102,10 +78,10 @@ public class Prova {
         impressao += ("\n\n\t\t PROVA M1");
         
         for(int i = 0; i < qntObj; i++)
-            impressao += getObjetiva(i);
+            impressao += listaObjetiva[i].retornaQuestao(i, qntDisc);
             
         for(int i = 0; i < qntDisc; i++)
-            impressao += getDiscursiva(i,qntObj);
+            impressao += listaDiscursiva[i].retornaQuestao(i, qntObj);
         
         return impressao;
     }
