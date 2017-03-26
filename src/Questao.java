@@ -12,7 +12,7 @@ public abstract class Questao {
     private String pergunta;
     private double peso;
 
-    abstract String retornaQuestao(int i,int qnt);
+    abstract String retornaQuestao(int i);
         
     public String getPergunta() {
         return pergunta;

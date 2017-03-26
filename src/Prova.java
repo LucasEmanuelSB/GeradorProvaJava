@@ -15,9 +15,12 @@ public class Prova {
     private String local;
     private String data;
     
-    public Discursiva listaDiscursiva[];
-    public Objetiva listaObjetiva[];
+    public ArrayList<Questao> questoes = new ArrayList<Questao>();
+    
+    /*public Discursiva listaDiscursiva[];
+    public Objetiva listaObjetiva*/
        
+   
     public String getNomeDisciplina(){
         return this.nomeDisciplina;
     }
@@ -49,14 +52,6 @@ public class Prova {
     public void setData(String data){
         this.data = data;
     }
-
-    public void setListaDiscursiva(Discursiva questaoNova, int i) {
-        this.listaDiscursiva[i] = questaoNova;
-    }
-
-    public void setListaObjetiva(Objetiva questaoNova, int i) {
-        this.listaObjetiva[i] = questaoNova;
-    }
     
     public String obtemDetalhes(){
         String cabecalho = "";
@@ -70,18 +65,19 @@ public class Prova {
         return cabecalho;
     }
     
-    public String obtemImpressao(int qntDisc, int qntObj){
+    public String obtemImpressao(){
         
         String impressao = "";
         
         impressao += obtemDetalhes();
         impressao += ("\n\n\t\t PROVA M1");
         
-        for(int i = 0; i < qntObj; i++)
-            impressao += listaObjetiva[i].retornaQuestao(i, qntDisc);
-            
-        for(int i = 0; i < qntDisc; i++)
-            impressao += listaDiscursiva[i].retornaQuestao(i, qntObj);
+        for(int i = 0; i < questoes.size(); i++){
+            if(questoes.get(i) instanceof Discursiva)
+                impressao += questoes.get(i).retornaQuestao(i);
+            if(questoes.get(i) instanceof Objetiva)
+                impressao += questoes.get(i).retornaQuestao(i);         
+        }
         
         return impressao;
     }
